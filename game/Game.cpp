@@ -19,7 +19,7 @@ bool Game::Init()
 	bool initSDLSuccessful = SDL_Init(SDL_INIT_AUDIO | SDL_INIT_VIDEO) == 0;
     if (!initSDLSuccessful)
     {
-        SDL_Log("Failed to initialize SDL! %s", SDL_GetError());
+        SDL_Log("SDL initialization failed: %s", SDL_GetError());
         return false;
     }
 	//initialize window
@@ -41,26 +41,72 @@ bool Game::Init()
 	}
 	//if nothing has gone wrong, return true
 	return true;
-
-    
 }
 
 void Game::RunGame()
 {
+	mIsRunning = true;
+
+	while (mIsRunning)
+	{
+		ProcessInput();
+		UpdateGame();
+		GenerateOutput();
+	}
 }
 
 void Game::Shutdown()
 {
+	//shut down everything
+	SDL_DestroyRenderer(mRenderer);
+	SDL_DestroyWindow(mWindow);
+	SDL_Quit();
 }
 
 void Game::ProcessInput()
 {
+	SDL_Event currentEvent;
+	while (SDL_PollEvent(&currentEvent))
+	{
+		//quit if the window is closed
+		if (currentEvent.type == SDL_QUIT)
+		{
+			mIsRunning = false;
+		}
+	}
+	const Uint8* keysArray = SDL_GetKeyboardState(nullptr);
+	//quit if escape is pressed
+	if (keysArray[SDL_SCANCODE_ESCAPE] == 1)
+	{
+		mIsRunning = false;
+	}
 }
 
 void Game::UpdateGame()
 {
+	//frame limiting
+	while (SDL_GetTicks() - mPrevTick < 16)
+	{
+		//wait in this loop until at least 16ms have passed
+	}
+	Uint32 currentTicks = SDL_GetTicks();
+
+	//calculate delta time in ms, then convert to seconds
+	unsigned deltaTimeMS = currentTicks - mPrevTick;
+	if (deltaTimeMS > 33)
+	{
+		deltaTimeMS = 33;
+	}
+	float deltaTime = static_cast<float>(deltaTimeMS) / 1000.0f;
+	mPrevTick = currentTicks;
 }
 
 void Game::GenerateOutput()
 {
+	//set blue background
+	SDL_SetRenderDrawColor(mRenderer, 0, 0, 255, 255);
+	SDL_RenderClear(mRenderer);
+
+	//send to screen
+	SDL_RenderPresent(mRenderer);
 }
