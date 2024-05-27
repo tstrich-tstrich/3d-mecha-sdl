@@ -132,6 +132,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AudioDirector.cpp" />
     <ClCompile Include="ColliderComp.cpp" />
     <ClCompile Include="CombatantObj.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -139,21 +140,26 @@
     <ClCompile Include="Main.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\MainUser\vs_libraries\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="MechModule.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObstacleObj.cpp" />
     <ClCompile Include="PhysicsComp.cpp" />
+    <ClCompile Include="ProjectileObj.cpp" />
     <ClCompile Include="StatusComp.cpp" />
     <ClCompile Include="SystemsComp.cpp" />
     <ClCompile Include="UIComp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AudioDirector.h" />
     <ClInclude Include="ColliderComp.h" />
     <ClInclude Include="CombatantObj.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="MechModule.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObstacleObj.h" />
     <ClInclude Include="PhysicsComp.h" />
+    <ClInclude Include="ProjectileObj.h" />
     <ClInclude Include="StatusComp.h" />
     <ClInclude Include="SystemsComp.h" />
     <ClInclude Include="UIComp.h" />
