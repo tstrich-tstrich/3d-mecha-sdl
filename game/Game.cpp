@@ -1,4 +1,5 @@
 #include "Game.h"
+#include <glm.hpp>
 
 Game::Game()
     : mWindow(nullptr)
