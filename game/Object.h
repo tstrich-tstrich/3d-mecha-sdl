@@ -27,7 +27,7 @@ public:
 	glm::vec3 GetUpVec();
 
 	const glm::quat& GetRotation() const { return mRotation; }
-	void SetPosition(const glm::quat& rot) { mRotation = rot; }
+	void SetRotation(const glm::quat& rot) { mRotation = rot; }
 
 	void AddComponent(std::shared_ptr<class Component> comp);
 	// Returns component of type T, or null if doesn't exist
@@ -52,10 +52,12 @@ protected:
 	glm::vec3 mPosition;
 	glm::quat mRotation;
 	std::weak_ptr<class Game> mGame;
+
+	//we don't need component deletion and creation buffers because an object's component vector should only be modified on object creation
 	std::vector<std::shared_ptr<Component>> mComponents;
 	
 	//overrided by subclasses for any unique subclass behavior
 	virtual void UniqueUpdate(float deltaTime){}
-	virtual void UniqueInput(float deltaTime){}
+	virtual void UniqueInput(const Uint8* keyState, Uint32 mouseButtons, const glm::vec2& relativeMouse){}
 };
 
