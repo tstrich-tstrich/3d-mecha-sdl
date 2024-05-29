@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include <glm.hpp>
+#include <memory>
 
 // a mostly abstract class to represent different bits of modular functionality to add to Objects
 class Component
@@ -15,12 +16,12 @@ public:
 	virtual void ProcessInput(const Uint8* keyState, Uint32 mouseButtons, const glm::vec2& relativeMouse);
 
 	int GetUpdateOrder() const { return mUpdatePriority; }
-	class Object* GetOwner() const { return mOwner; }
-	class Game* GetGame() const;
+	std::weak_ptr<class Object> GetOwner() const { return mOwner; }
+	class std::weak_ptr<class Game> GetGame() const;
 
 protected:
 	// Object that this component is a part of
-	class Object* mOwner;
+	std::weak_ptr<class Object> mOwner;
 	// Update order - larger priority will be updated sooner
 	unsigned mUpdatePriority;
 };

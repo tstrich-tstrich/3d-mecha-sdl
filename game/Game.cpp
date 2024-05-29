@@ -1,6 +1,8 @@
 #include "Game.h"
 #include <glm.hpp>
 
+#include "Object.h"
+
 Game::Game()
     : mWindow(nullptr)
     , mRenderer(nullptr)
@@ -12,6 +14,8 @@ Game::Game()
 Game::~Game()
 {
     Shutdown();
+	delete mWindow;
+	delete mRenderer;
 }
 
 bool Game::Init()
@@ -40,6 +44,12 @@ bool Game::Init()
 		SDL_Log("Renderer initialization failed: %s", SDL_GetError());
 		return false;
 	}
+
+	// Enable relative mouse mode
+	SDL_SetRelativeMouseMode(SDL_TRUE);
+	// Clear any saved values
+	SDL_GetRelativeMouseState(nullptr, nullptr);
+
 	//if nothing has gone wrong, return true
 	return true;
 }
@@ -66,6 +76,7 @@ void Game::Shutdown()
 
 void Game::ProcessInput()
 {
+	//check if the game window was closed
 	SDL_Event currentEvent;
 	while (SDL_PollEvent(&currentEvent))
 	{
@@ -75,39 +86,86 @@ void Game::ProcessInput()
 			mIsRunning = false;
 		}
 	}
+
+	//get keyboard state
 	const Uint8* keysArray = SDL_GetKeyboardState(nullptr);
 	//quit if escape is pressed
 	if (keysArray[SDL_SCANCODE_ESCAPE] == 1)
 	{
 		mIsRunning = false;
 	}
+
+	//get mouse info
+	int x = 0;
+	int y = 0;
+	Uint32 mouseButtons = SDL_GetRelativeMouseState(&x, &y);
+	glm::vec2 relativeMouse(x, y);
+
+	//send mouse+keyboard info to all objects to process input
+	for (auto& obj : mObjects)
+	{
+		obj.get()->ProcessInput(keysArray, mouseButtons, relativeMouse);
+	}
 }
 
 void Game::UpdateGame()
 {
-	//frame limiting
-	while (SDL_GetTicks() - mPrevTick < 16)
-	{
-		//wait in this loop until at least 16ms have passed
-	}
 	Uint32 currentTicks = SDL_GetTicks();
 
 	//calculate delta time in ms, then convert to seconds
 	unsigned deltaTimeMS = currentTicks - mPrevTick;
-	if (deltaTimeMS > 33)
-	{
-		deltaTimeMS = 33;
-	}
 	float deltaTime = static_cast<float>(deltaTimeMS) / 1000.0f;
 	mPrevTick = currentTicks;
+
+	//send deltaTime to all objects to update game state
+	for (auto& obj : mObjects)
+	{
+		obj.get()->Update(deltaTime);
+	}
+
+	//iterate through all objects flagged for deletion and remove them from main object vector
+	for (auto& obj : mDeletionBuffer)
+	{
+		auto iter = std::find(mObjects.begin(), mObjects.end(), obj);
+		if (iter != mObjects.end())
+		{
+			mObjects.erase(iter);
+		}
+	}
+	mDeletionBuffer.clear();
+
+	//add newly created objects to main object vector and clear new object buffer
+	mObjects.insert(mObjects.begin(), mNewObjectBuffer.begin(), mNewObjectBuffer.end());
+	mNewObjectBuffer.clear();
 }
 
 void Game::GenerateOutput()
 {
+	//TODO put the actual game graphics here lol
 	//set blue background
 	SDL_SetRenderDrawColor(mRenderer, 0, 0, 255, 255);
 	SDL_RenderClear(mRenderer);
 
 	//send to screen
 	SDL_RenderPresent(mRenderer);
+}
+
+
+void Game::AddObject(std::shared_ptr<class Object> obj)
+{
+	mNewObjectBuffer.push_back(obj);
+}
+
+
+void Game::DeleteObject(std::shared_ptr<class Object> obj)
+{
+	mDeletionBuffer.push_back(obj);
+}
+
+void Game::AddCollider(std::shared_ptr<class ColliderComp> obj)
+{
+}
+
+void Game::DeleteCollider(std::shared_ptr<class ColliderComp> obj)
+{
 }
