@@ -1,7 +1,11 @@
 #include "Component.h"
+#include "Object.h"
 
-Component::Component(Object* owner, unsigned updatePriority)
+Component::Component(std::weak_ptr<class Object> owner, unsigned updatePriority)
+	:mUpdatePriority(updatePriority)
+	,mOwner(owner)
 {
+	mOwner.lock().get()->AddComponent(std::shared_ptr<Component>(this));
 }
 
 Component::~Component()

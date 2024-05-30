@@ -14,8 +14,6 @@ Game::Game()
 Game::~Game()
 {
     Shutdown();
-	delete mWindow;
-	delete mRenderer;
 }
 
 bool Game::Init()
@@ -166,6 +164,3 @@ void Game::AddCollider(std::shared_ptr<class ColliderComp> obj)
 {
 }
 
-void Game::DeleteCollider(std::shared_ptr<class ColliderComp> obj)
-{
-}

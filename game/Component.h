@@ -7,7 +7,7 @@
 class Component
 {
 public:
-	Component(class Object* owner, unsigned updatePriority = 0);
+	Component(std::weak_ptr<class Object> owner, unsigned updatePriority = 0);
 	virtual ~Component();
 
 	// Update this component by delta time - called by owning Object

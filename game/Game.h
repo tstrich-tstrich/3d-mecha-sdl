@@ -6,7 +6,7 @@
 #include <memory>
 
 //the Game class is in charge of reading input, managing the overall game state, and sending info to the renderer to display on-screen. There should only ever be one instance of this class
-//this codebase takes some inspiration from Sanjay Madhav's ITP380 game code. Shout-out to Sanjay!
+//this codebase takes some inspiration from Sanjay Madhav's ITP380 game code. Shout-out to Sanjay
 class Game
 {
 public:
@@ -26,7 +26,6 @@ public:
 	void DeleteObject(std::shared_ptr<class Object> obj);
 
 	void AddCollider(std::shared_ptr<class ColliderComp> obj);
-	void DeleteCollider(std::shared_ptr<class ColliderComp> obj);
 
 private:
 	SDL_Window* mWindow;
