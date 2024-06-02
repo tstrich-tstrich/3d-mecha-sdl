@@ -1,6 +1,7 @@
 #include "Object.h"
 #include "Game.h"
 #include <algorithm>
+#include <gtx/quaternion.hpp>
 
 Object::Object(std::weak_ptr<class Game> game)
 	:mPosition(0,0,0)
@@ -38,16 +39,14 @@ void Object::ProcessInput(const Uint8* keyState, Uint32 mouseButtons, const glm:
 	}
 }
 
-glm::vec3 Object::GetForwardVec()
+glm::vec3 Object::GetForwardVec() const
 {
-	//glm::vec3 forward = 
-	return glm::vec3();
+	return glm::rotate(mRotation, glm::vec3(0.0,0.0,1.0));
 }
 
-glm::vec3 Object::GetUpVec()
+glm::vec3 Object::GetUpVec() const
 {
-	//TODO
-	return glm::vec3();
+	return glm::rotate(mRotation, glm::vec3(0.0, 1.0, 0.0));
 }
 
 void Object::AddComponent(std::shared_ptr<class Component> comp)

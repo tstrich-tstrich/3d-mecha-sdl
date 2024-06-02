@@ -25,7 +25,7 @@ public:
 	void AddObject(std::shared_ptr<class Object> obj);
 	void DeleteObject(std::shared_ptr<class Object> obj);
 
-	void AddCollider(std::shared_ptr<class ColliderComp> obj);
+	void AddCollider(std::shared_ptr<class ColliderComp> col);
 
 private:
 	SDL_Window* mWindow;

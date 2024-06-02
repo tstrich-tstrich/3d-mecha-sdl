@@ -34,8 +34,7 @@ bool Game::Init()
 		return false;
 	}
 	//initialize renderer
-	mRenderer =
-		SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	mRenderer = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	//return false if renderer fails
 	if (mRenderer == nullptr)
 	{
@@ -160,7 +159,9 @@ void Game::DeleteObject(std::shared_ptr<class Object> obj)
 	mDeletionBuffer.push_back(obj);
 }
 
-void Game::AddCollider(std::shared_ptr<class ColliderComp> obj)
+void Game::AddCollider(std::shared_ptr<class ColliderComp> col)
 {
+	//won't be creating colliders while checking collisions so can just add straight to vector
+	mColliders.push_back(col);
 }
 

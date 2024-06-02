@@ -23,8 +23,8 @@ public:
 	const glm::vec3& GetPosition() const { return mPosition; }
 	void SetPosition(const glm::vec3& pos) { mPosition = pos; }
 
-	glm::vec3 GetForwardVec();
-	glm::vec3 GetUpVec();
+	glm::vec3 GetForwardVec() const;
+	glm::vec3 GetUpVec() const;
 
 	const glm::quat& GetRotation() const { return mRotation; }
 	void SetRotation(const glm::quat& rot) { mRotation = rot; }
