@@ -12,8 +12,8 @@ public:
 private:
 	float mMass;
 	glm::vec3 mAccel;
-	glm::vec3 mCurrentVelocity;
-	glm::vec3 mPreviousVelocity;
-
+	glm::vec3 mCurrVelocity;
+	glm::vec3 mPrevVelocity;
+	glm::vec3 mPrevPosition;
 };
 
