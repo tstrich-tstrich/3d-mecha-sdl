@@ -159,9 +159,19 @@ void Game::DeleteObject(std::shared_ptr<class Object> obj)
 	mDeletionBuffer.push_back(obj);
 }
 
-void Game::AddCollider(std::shared_ptr<class ColliderComp> col)
+void Game::AddCollider(std::shared_ptr<class SphereColliderComp> col)
 {
 	//won't be creating colliders while checking collisions so can just add straight to vector
 	mColliders.push_back(col);
+}
+
+void Game::RemoveCollider(std::shared_ptr<class SphereColliderComp> col)
+{
+	///should only be called from destructor of colliders
+	auto iter = std::find(mColliders.begin(), mColliders.end(), col);
+	if (iter != mColliders.end())
+	{
+		mColliders.erase(iter);
+	}
 }
 

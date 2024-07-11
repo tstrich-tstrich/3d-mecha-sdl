@@ -25,7 +25,10 @@ public:
 	void AddObject(std::shared_ptr<class Object> obj);
 	void DeleteObject(std::shared_ptr<class Object> obj);
 
-	void AddCollider(std::shared_ptr<class ColliderComp> col);
+	void AddCollider(std::shared_ptr<class SphereColliderComp> col);
+	void RemoveCollider(std::shared_ptr<class SphereColliderComp> col);
+
+	const std::vector<std::shared_ptr<class SphereColliderComp>>& GetColliders() { return mColliders; }
 
 private:
 	SDL_Window* mWindow;
@@ -39,7 +42,7 @@ private:
 	std::vector<std::shared_ptr<class Object>> mObjects;
 	std::vector<std::shared_ptr<class Object>> mNewObjectBuffer;
 	std::vector<std::shared_ptr<class Object>> mDeletionBuffer;
-	std::vector<std::shared_ptr<class ColliderComp>> mColliders;
+	std::vector<std::shared_ptr<class SphereColliderComp>> mColliders;
 
 	void ProcessInput();
 	void UpdateGame();

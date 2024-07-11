@@ -8,12 +8,13 @@ class Component
 {
 public:
 	Component(std::weak_ptr<class Object> owner, unsigned updatePriority = 0);
-	virtual ~Component();
 
 	// Update this component by delta time - called by owning Object
-	virtual void Update(float deltaTime);
+	virtual void Update(float deltaTime) {}
 	// Process input for this component (if needed) - called by owning Object
-	virtual void ProcessInput(const Uint8* keyState, Uint32 mouseButtons, const glm::vec2& relativeMouse);
+	virtual void ProcessInput(const Uint8* keyState, Uint32 mouseButtons, const glm::vec2& relativeMouse) {}
+	// Process a collision
+	virtual void OnCollision(std::weak_ptr<class Object>) {}
 
 	int GetUpdateOrder() const { return mUpdatePriority; }
 	std::weak_ptr<class Object> GetOwner() const { return mOwner; }

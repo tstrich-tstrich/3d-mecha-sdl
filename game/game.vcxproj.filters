@@ -48,13 +48,10 @@
     <ClCompile Include="AudioDirector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ColliderComp.cpp">
+    <ClCompile Include="SphereColliderComp.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsComp.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="StatusComp.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="SystemsComp.cpp">
@@ -95,19 +92,13 @@
     <ClInclude Include="Component.h">
       <Filter>Header Files\Base Classes</Filter>
     </ClInclude>
-    <ClInclude Include="ColliderComp.h">
+    <ClInclude Include="SphereColliderComp.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="PhysicsComp.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="StatusComp.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
     <ClInclude Include="SystemsComp.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="UIComp.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="CombatantObj.h">
@@ -121,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="MechModule.h">
       <Filter>Header Files\Base Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="UIComp.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -11,10 +11,6 @@ Object::Object(std::weak_ptr<class Game> game)
 	mGame.lock().get()->AddObject(std::shared_ptr<Object>(this));
 }
 
-Object::~Object()
-{
-}
-
 void Object::Update(float deltaTime)
 {
 	//do any unique subclass behavior
@@ -36,6 +32,15 @@ void Object::ProcessInput(const Uint8* keyState, Uint32 mouseButtons, const glm:
 	for (auto& comp : mComponents)
 	{
 		comp.get()->ProcessInput(keyState, mouseButtons, relativeMouse);
+	}
+}
+
+void Object::RegisterCollision(std::weak_ptr<Object> other)
+{
+	//send collision info to all components
+	for (auto& comp : mComponents)
+	{
+		comp.get()->OnCollision(other);
 	}
 }
 

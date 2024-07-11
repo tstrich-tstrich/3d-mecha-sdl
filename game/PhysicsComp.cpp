@@ -2,7 +2,7 @@
 #include "Object.h"
 
 PhysicsComp::PhysicsComp(std::weak_ptr<class Object> owner, float mass)
-	:Component(owner)
+	:Component(owner, 100)
 	,mMass(mass)
 	,mAccel(glm::vec3(0,0,0))
 	,mCurrVelocity(glm::vec3(0, 0, 0))

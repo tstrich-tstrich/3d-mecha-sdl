@@ -12,12 +12,14 @@ class Object
 {
 public:
 	Object(std::weak_ptr<class Game> game);
-	virtual ~Object();
 
 	// Update function called from Game
 	void Update(float deltaTime);
 	// ProcessInput function called from Game
 	void ProcessInput(const Uint8* keyState, Uint32 mouseButtons, const glm::vec2& relativeMouse);
+
+	//send collision info all components
+	void RegisterCollision(std::weak_ptr<Object> other);
 
 	//getters and setters
 	const glm::vec3& GetPosition() const { return mPosition; }
