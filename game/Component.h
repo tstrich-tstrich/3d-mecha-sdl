@@ -14,7 +14,7 @@ public:
 	// Process input for this component (if needed) - called by owning Object
 	virtual void ProcessInput(const Uint8* keyState, Uint32 mouseButtons, const glm::vec2& relativeMouse) {}
 	// Process a collision
-	virtual void OnCollision(std::weak_ptr<class Object>) {}
+	virtual void OnCollision(std::weak_ptr<class Object> other) {}
 
 	int GetUpdateOrder() const { return mUpdatePriority; }
 	std::weak_ptr<class Object> GetOwner() const { return mOwner; }

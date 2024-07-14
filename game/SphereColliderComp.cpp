@@ -29,7 +29,7 @@ bool SphereColliderComp::CheckRayCollision(const glm::vec3& origin, const glm::v
 {
 	glm::vec3 normalized = glm::normalize(normal); //normalize the direction of the ray
 	glm::vec3 center = mOwner.lock().get()->GetPosition(); 
-	if (glm::distance(origin, center) < mRadius)
+	if (CheckPointCollision(center))
 	{
 		return false; //if the ray's origin is inside this sphere collider, ignore the collision
 	}
@@ -44,12 +44,27 @@ bool SphereColliderComp::CheckRayCollision(const glm::vec3& origin, const glm::v
 	return (b * b) - (4 * c) > 0.0; //if the discriminant of the quadratic equation for ray-sphere collision is positive, there is a collision.
 }
 
-const glm::vec3& SphereColliderComp::GetNormal(std::weak_ptr<Object> other)
+const glm::vec3& SphereColliderComp::GetNormal(const glm::vec3& point)
 {
-	return glm::normalize(other.lock().get()->GetPosition() - mOwner.lock().get()->GetPosition());
+	return glm::normalize(point - mOwner.lock().get()->GetPosition());
+}
+
+float SphereColliderComp::GetOverlap(std::weak_ptr<SphereColliderComp> other)
+{
+	
+	return glm::distance(other.lock().get()->GetOwner().lock().get()->GetPosition(), mOwner.lock().get()->GetPosition()) - (;
 }
 
 void SphereColliderComp::Update(float deltaTime)
 {
-	
+	for (auto& col : GetGame().lock().get()->GetColliders())
+	{
+		bool collision = col.get()->CheckSphereCollision(mOwner.lock().get()->GetPosition(), mRadius);
+		if (collision)
+		{
+			col.get()->GetOwner().lock().get()->RegisterCollision(mOwner);
+			mOwner.lock().get()->RegisterCollision(col.get()->GetOwner());
+		}
+		
+	}
 }

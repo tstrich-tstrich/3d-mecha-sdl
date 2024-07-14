@@ -32,7 +32,7 @@ public:
 	void SetRotation(const glm::quat& rot) { mRotation = rot; }
 
 	void AddComponent(std::shared_ptr<class Component> comp);
-	// Returns component of type T, or null if doesn't exist
+	// Returns component of type T, or eampty weak_ptr if doesn't exist
 	template <typename T>
 	std::weak_ptr<T> GetComponent() const
 	{
@@ -45,7 +45,7 @@ public:
 			}
 		}
 
-		return nullptr;
+		return std::weak_ptr();
 	}
 
 	class std::weak_ptr<class Game> GetGame() { return mGame; }

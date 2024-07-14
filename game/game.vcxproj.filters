@@ -78,6 +78,9 @@
     <ClCompile Include="MechModule.cpp">
       <Filter>Source Files\Base Classes</Filter>
     </ClCompile>
+    <ClCompile Include="SolidBodyComp.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -114,6 +117,9 @@
       <Filter>Header Files\Base Classes</Filter>
     </ClInclude>
     <ClInclude Include="UIComp.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="SolidBodyComp.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>

@@ -10,7 +10,8 @@ public:
 	virtual bool CheckPointCollision(const glm::vec3& point);
 	virtual bool CheckRayCollision(const glm::vec3& origin, const glm::vec3& normal);
 
-	virtual const glm::vec3& GetNormal(std::weak_ptr<class Object> other);
+	virtual const glm::vec3& GetNormal(const glm::vec3& point);
+	virtual float GetOverlap(std::weak_ptr<SphereColliderComp> other);
 
 	virtual void Update(float deltaTime) override;
 

@@ -133,6 +133,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AudioDirector.cpp" />
+    <ClCompile Include="SolidBodyComp.cpp" />
     <ClCompile Include="SphereColliderComp.cpp" />
     <ClCompile Include="CombatantObj.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -150,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AudioDirector.h" />
+    <ClInclude Include="SolidBodyComp.h" />
     <ClInclude Include="SphereColliderComp.h" />
     <ClInclude Include="CombatantObj.h" />
     <ClInclude Include="Component.h" />
