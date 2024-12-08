@@ -7,7 +7,7 @@
 
 #include "Component.h"
 
-//a mostly abstract class that represents any possible object, player, obstacle, enemy, etc in the game. In-game objects will mostly be an instance of a subclass of this, rather than a pure Object instance
+//a class that represents any possible object, player, obstacle, enemy, etc in the game. In-game objects will mostly be an instance of a subclass of this, rather than a pure Object instance
 class Object
 {
 public:
@@ -38,14 +38,15 @@ public:
 	{
 		for (auto& comp : mComponents)
 		{
-			std::weak_ptr<T> foundComp = dynamic_cast<std::shared_ptr<T>>(comp);
+			std::shared_ptr<T> foundComp = std::dynamic_pointer_cast<T>(comp);
 			if (foundComp != nullptr)
 			{
-				return foundComp;
+				return std::weak_ptr<T>(foundComp);
 			}
+
 		}
 
-		return std::weak_ptr();
+		return std::weak_ptr<T>();
 	}
 
 	class std::weak_ptr<class Game> GetGame() { return mGame; }

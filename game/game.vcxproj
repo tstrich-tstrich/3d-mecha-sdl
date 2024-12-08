@@ -108,6 +108,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -133,9 +134,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AudioDirector.cpp" />
+    <ClCompile Include="ContainerMod.cpp" />
+    <ClCompile Include="PilotSeat.cpp" />
+    <ClCompile Include="RCSMod.cpp" />
     <ClCompile Include="SolidBodyComp.cpp" />
     <ClCompile Include="SphereColliderComp.cpp" />
-    <ClCompile Include="CombatantObj.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp">
@@ -147,13 +151,17 @@
     <ClCompile Include="PhysicsComp.cpp" />
     <ClCompile Include="ProjectileObj.cpp" />
     <ClCompile Include="SystemsComp.cpp" />
+    <ClCompile Include="ThrusterMod.cpp" />
     <ClCompile Include="UIComp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AudioDirector.h" />
+    <ClInclude Include="ContainerMod.h" />
+    <ClInclude Include="PilotSeat.h" />
+    <ClInclude Include="RCSMod.h" />
     <ClInclude Include="SolidBodyComp.h" />
     <ClInclude Include="SphereColliderComp.h" />
-    <ClInclude Include="CombatantObj.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="MechModule.h" />
@@ -162,6 +170,7 @@
     <ClInclude Include="PhysicsComp.h" />
     <ClInclude Include="ProjectileObj.h" />
     <ClInclude Include="SystemsComp.h" />
+    <ClInclude Include="ThrusterMod.h" />
     <ClInclude Include="UIComp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

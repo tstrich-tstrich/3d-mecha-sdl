@@ -72,7 +72,7 @@
     <ClCompile Include="ProjectileObj.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="CombatantObj.cpp">
+    <ClCompile Include="Player.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
     <ClCompile Include="MechModule.cpp">
@@ -80,6 +80,18 @@
     </ClCompile>
     <ClCompile Include="SolidBodyComp.cpp">
       <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="RCSMod.cpp">
+      <Filter>Source Files\Mech Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ThrusterMod.cpp">
+      <Filter>Source Files\Mech Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ContainerMod.cpp">
+      <Filter>Source Files\Mech Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="PilotSeat.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -104,7 +116,7 @@
     <ClInclude Include="SystemsComp.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="CombatantObj.h">
+    <ClInclude Include="Player.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
     <ClInclude Include="ObstacleObj.h">
@@ -121,6 +133,18 @@
     </ClInclude>
     <ClInclude Include="SolidBodyComp.h">
       <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ThrusterMod.h">
+      <Filter>Header Files\Mech Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="RCSMod.h">
+      <Filter>Header Files\Mech Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ContainerMod.h">
+      <Filter>Header Files\Mech Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="PilotSeat.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

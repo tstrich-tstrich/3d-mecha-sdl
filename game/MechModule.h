@@ -4,19 +4,25 @@
 
 #include "SystemsComp.h"
 
+//abstract class representing a part of a mech, like an engine or weapon etc etc. these are managed by one systemscomp on each mech game object
 class MechModule
 {
 public:
-	MechModule(class Object owner, class SystemsComp ownerSys);
+	MechModule(std::weak_ptr<class SystemsComp> ownerSys)
+		:mMechSystem(ownerSys)
+		,mOwner(ownerSys.lock().get()->GetOwner())
+	{
+	}
 
+	bool mIsActive = true;
+	bool mIsDamaged = false;
 
-
-	virtual int RequestResource(MechResource resource, int amount) { return -1; }
-	virtual int ProvideResource(MechResource resource, int amount) { return -1; }
+	virtual bool RequestResource(MechResource resource, float amount) { return false; }
 
 protected:
 	std::weak_ptr<class Object> mOwner;
 	std::weak_ptr<class SystemsComp> mMechSystem;
 
+	bool mCanTransferResources = false;
 };
 

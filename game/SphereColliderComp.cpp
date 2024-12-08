@@ -52,7 +52,9 @@ const glm::vec3& SphereColliderComp::GetNormal(const glm::vec3& point)
 float SphereColliderComp::GetOverlap(std::weak_ptr<SphereColliderComp> other)
 {
 	
-	return glm::distance(other.lock().get()->GetOwner().lock().get()->GetPosition(), mOwner.lock().get()->GetPosition()) - (;
+	Object* ownerRaw = mOwner.lock().get();
+	SphereColliderComp* rawOther = other.lock().get();
+	return glm::distance(rawOther->GetOwner().lock().get()->GetPosition(), ownerRaw->GetPosition()) - (mRadius + rawOther->mRadius);
 }
 
 void SphereColliderComp::Update(float deltaTime)

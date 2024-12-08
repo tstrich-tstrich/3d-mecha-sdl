@@ -1,6 +1,8 @@
 #include "Object.h"
 #include "Game.h"
 #include <algorithm>
+
+#define GLM_ENABLE_EXPERIMENTAL
 #include <gtx/quaternion.hpp>
 
 Object::Object(std::weak_ptr<class Game> game)

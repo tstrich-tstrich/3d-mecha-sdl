@@ -1,9 +1,10 @@
 #pragma once
 #include <SDL.h>
 #include <glm.hpp>
+#include <ext.hpp>
 #include <memory>
 
-// a mostly abstract class to represent different bits of modular functionality to add to Objects
+// an abstract class to represent different bits of modular functionality to add to Objects
 class Component
 {
 public:
